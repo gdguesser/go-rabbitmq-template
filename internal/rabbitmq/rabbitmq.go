@@ -10,7 +10,7 @@ type Service interface {
 }
 
 type RabbitMQ struct {
-	Conn *amqp.Connection
+	Conn    *amqp.Connection
 	Channel *amqp.Channel
 }
 
@@ -30,11 +30,8 @@ func (r *RabbitMQ) Connect() error {
 		return err
 	}
 
-
-
 	return nil
 }
-
 
 // NewRabbitMQService returns a pointer to a new RabbitMQ service
 func NewRabbitMQService() *RabbitMQ {

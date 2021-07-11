@@ -7,14 +7,13 @@ import (
 
 type App struct {
 	Rmq *rabbitmq.RabbitMQ
-
 }
 
 func Run() error {
 	fmt.Println("Go RabbitMQ Template")
 
 	rmq := rabbitmq.NewRabbitMQService()
-	app := App {
+	app := App{
 		Rmq: rmq,
 	}
 
