@@ -7,6 +7,7 @@ import (
 
 type Service interface {
 	Connect() error
+	Publish(message string) error
 }
 
 type RabbitMQ struct {
@@ -30,6 +31,35 @@ func (r *RabbitMQ) Connect() error {
 		return err
 	}
 
+	_, err = r.Channel.QueueDeclare(
+		"TestQueue",
+		false,
+		false,
+		false,
+		false,
+		nil,
+	)
+
+	return nil
+}
+
+// Publish takes in a string message and publishes to a queue
+func (r *RabbitMQ) Publish(message string) error {
+	err := r.Channel.Publish(
+		"",
+		"TestQueue",
+		false,
+		false,
+		amqp.Publishing{
+			ContentType: "text/plain",
+			Body: []byte(message),
+		},
+	)
+	if err != nil {
+		return err
+	}
+
+	fmt.Println("Sucessfully published message to queue")
 	return nil
 }
 
