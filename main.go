@@ -28,6 +28,8 @@ func Run() error {
 		return err
 	}
 
+	app.Rmq.Consume()
+
 	return nil
 }
 
