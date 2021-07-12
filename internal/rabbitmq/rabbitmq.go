@@ -2,6 +2,7 @@ package rabbitmq
 
 import (
 	"fmt"
+
 	"github.com/streadway/amqp"
 )
 
@@ -53,7 +54,7 @@ func (r *RabbitMQ) Publish(message string) error {
 		false,
 		amqp.Publishing{
 			ContentType: "text/plain",
-			Body: []byte(message),
+			Body:        []byte(message),
 		},
 	)
 	if err != nil {
