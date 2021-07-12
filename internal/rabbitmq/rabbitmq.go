@@ -41,6 +41,9 @@ func (r *RabbitMQ) Connect() error {
 		false,
 		nil,
 	)
+	if err != nil {
+		return err
+	}
 
 	return nil
 }
